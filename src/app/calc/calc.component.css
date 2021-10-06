@@ -20,3 +20,14 @@
     position: absolute;
     z-index: 1;
   }
+
+  
+  .LoggedinUser{
+    color: white!important;
+    padding: 20px!important;
+    text-align: center!important;
+    /* justify-content: center!important; */
+    /* display: flex!important;  */
+  }
+
+  

@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
+import { OktaConfig } from "app/shared/okta/okta-config";
+import {
+  OktaAuth,
+  OktaAuthOptions,
+  TokenManager,
+  AccessToken,
+  IDToken,
+  UserClaims,
+  TokenParams
+} from '@okta/okta-auth-js'
 
 @Component({
   selector: 'app-calc',
@@ -8,12 +19,61 @@ import { Component, OnInit } from '@angular/core';
 export class CalcComponent implements OnInit {
   private stack: (number | string)[] = [];
   display = '';
+  UserLoggedIn: any;
+  strWelcome: any;
+  strUserSession: any;
+  strSan: any;
+  strUser: any;
+  authService = new OktaAuth(this.oktaSDKAuth.config);
 
-  constructor() { }
+  constructor(private oktaSDKAuth: OktaSDKAuthService, private OktaConfig: OktaConfig) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.display = '0';
     this.stack = ['='];
+
+    this.strUserSession = await this.authService.session.exists()
+      .then(function (exists) {
+        if (exists) {
+          // logged in
+          console.log(exists);
+          return exists
+        } else {
+          // not logged in
+          //console.log(exists);
+
+          return exists
+        }
+      });
+    switch (this.strUserSession == true) {
+      case false:
+        console.log(this.OktaConfig.strPostLogoutURL);
+        window.location.replace(this.OktaConfig.strPostLogoutURL);
+
+      case true:
+        var strSession = this.authService.token.getWithoutPrompt({
+          responseType: 'id_token', // or array of types
+          sessionToken: 'testSessionToken', // optional if the user has an existing Okta session           
+        })
+          .then(function (res) {
+            var tokens = res.tokens;
+            //console.log(res.tokens);
+            //console.log(res.state);
+            var strUser = tokens.idToken.claims.email;
+            //console.log(strUser);
+            return tokens.idToken.claims.email;
+          })
+          .catch(function (err) {
+          });
+        this.strUser = await this.authService.token.getWithoutPrompt()
+        console.log(this.strUser);
+        // this.UserID = this.strUser.tokens.idToken.claims.sub;
+        this.UserLoggedIn = this.strUser.tokens.idToken.claims.email;
+        console.log(this.UserLoggedIn)
+        this.strWelcome = 'ようこそ';
+        this.strSan = 'さん';
+
+    }
   }
 
   numberPressed(val: string): void {
@@ -27,7 +87,7 @@ export class CalcComponent implements OnInit {
   }
 
   operatorPressed(val: string): void {
-    const precedenceMap: {[index: string]: any} = {'+': 0, '-': 0, '*': 1, '/': 1};
+    const precedenceMap: { [index: string]: any } = { '+': 0, '-': 0, '*': 1, '/': 1 };
     this.ensureNumber();
     const precedence = precedenceMap[val];
     let reduce = true;
@@ -54,13 +114,13 @@ export class CalcComponent implements OnInit {
 
   equalPressed(): void {
     this.ensureNumber();
-    while (this.reduceLast()) {}
+    while (this.reduceLast()) { }
     this.stack.pop();
   }
 
   percentPressed(): void {
     this.ensureNumber();
-    while (this.reduceLast()) {}
+    while (this.reduceLast()) { }
     const result = this.stack.pop() as number / 100;
     this.display = result.toString(10);
   }
@@ -89,13 +149,13 @@ export class CalcComponent implements OnInit {
     let result = num1;
     switch (op) {
       case '+': result = num1 + num2;
-                break;
+        break;
       case '-': result = num1 - num2;
-                break;
+        break;
       case '*': result = num1 * num2;
-                break;
+        break;
       case '/': result = num1 / num2;
-                break;
+        break;
     }
     this.stack.push(result);
     this.display = result.toString(10);
