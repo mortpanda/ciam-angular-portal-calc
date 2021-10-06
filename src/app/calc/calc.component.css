@@ -1,0 +1,22 @@
+.display {
+    background-color: #f8f8f8;
+    line-height: 36px;
+    padding: 5px 8px;
+    font-size: 36px;
+  }
+  
+  .calculator button {
+    margin: 5px;
+    width: 64px;
+  }
+  
+  .calculator button.tall {
+    float: right;
+    height: 82px;
+  }
+  
+
+  .products{
+    position: absolute;
+    z-index: 1;
+  }
