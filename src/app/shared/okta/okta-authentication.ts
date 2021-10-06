@@ -98,9 +98,8 @@ export class AuthService {
                   // user has details about the user
                   //console.log(user);
                   // console.log(JSON.stringify(user));
-                                   
-                  window.location.replace(window.location.origin);
-                  // window.location.replace(this.OktaConfig.strRedirectURL);
+                  window.location.replace(OktaRedirect);
+
                 })
                 .catch(function(err) {
                   // handle OAuthError or AuthSdkError (AuthSdkError will be thrown if app is in OAuthCallback state)
