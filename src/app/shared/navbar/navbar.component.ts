@@ -1,10 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-//// This is needed to import from a path
-import { WidgetModalComponent } from 'app/widget-modal/widget-modal.component';
-
-
 import { ViewEncapsulation } from '@angular/core';
 
 import { ViewChild, AfterViewInit } from '@angular/core';

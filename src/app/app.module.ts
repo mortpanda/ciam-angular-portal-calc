@@ -31,23 +31,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
-//
-
 import { SdkLoginComponent } from './sdk-login/sdk-login.component';
-
-import { WidgetModalComponent } from './widget-modal/widget-modal.component';
-
 import { Router, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {A11yModule} from '@angular/cdk/a11y';
 import {MatChipsModule} from '@angular/material/chips'; 
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
-import { HomeComponent } from './home/home.component'; 
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { CalcComponent } from './calc/calc.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -59,8 +51,8 @@ import { WhoisoktaComponent } from './whoisokta/whoisokta.component';
     NavbarComponent,
     FooterComponent,
     SdkLoginComponent,
-    WidgetModalComponent,
-    HomeComponent,
+    
+    
     CalcComponent,
     LoginPageComponent,
     WhoisoktaComponent,

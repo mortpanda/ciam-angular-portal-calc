@@ -4,7 +4,7 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentsComponent } from './components/components.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
-import { HomeComponent } from './home/home.component';
+
 import { CalcComponent } from './calc/calc.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 
