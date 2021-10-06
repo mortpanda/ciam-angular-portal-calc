@@ -113,10 +113,10 @@ export class AuthService {
   }
 
   OktaLogout(bar?: string){ 
-    
+    console.log(this.LogoutURI )
     this.authClient.tokenManager.clear();
     this.authClient.signOut({postLogoutRedirectUri : this.LogoutURI ,idToken: this.idToken});
-    location.reload();
+    
 }
             
 }

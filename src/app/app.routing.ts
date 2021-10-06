@@ -6,12 +6,12 @@ import { ComponentsComponent } from './components/components.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 import { HomeComponent } from './home/home.component';
 import { CalcComponent } from './calc/calc.component';
-
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home',             component: HomeComponent },
+    { path: 'home',             component: LoginPageComponent },
     { path: 'calc',             component: CalcComponent },
     //{ path: 'user-profile',     component: ProfileComponent },
     //{ path: 'signup',           component: SignupComponent },

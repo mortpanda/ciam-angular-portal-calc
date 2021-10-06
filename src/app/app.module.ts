@@ -50,6 +50,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { HomeComponent } from './home/home.component'; 
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { CalcComponent } from './calc/calc.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { WhoisoktaComponent } from './whoisokta/whoisokta.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { CalcComponent } from './calc/calc.component';
     WidgetModalComponent,
     HomeComponent,
     CalcComponent,
+    LoginPageComponent,
+    WhoisoktaComponent,
     
     
     

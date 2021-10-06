@@ -9,6 +9,7 @@ import { ViewEncapsulation } from '@angular/core';
 
 import { ViewChild, AfterViewInit } from '@angular/core';
 import {OktaSDKAuthService} from 'app/shared/okta/okta-auth-service';
+import {AuthService} from 'app/shared/okta/okta-authentication';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
@@ -32,7 +33,7 @@ export class NavbarComponent implements OnInit {
 
     
     
-    constructor(public location: Location, private element : ElementRef,public _matdialog: MatDialog, private OktaAuthClient : OktaSDKAuthService,private router: Router) {
+    constructor(public location: Location, private element : ElementRef,public _matdialog: MatDialog,private OktaAuth: AuthService, private OktaAuthClient : OktaSDKAuthService,private router: Router) {
         this.sidebarVisible = false;
     }
 
@@ -89,20 +90,20 @@ export class NavbarComponent implements OnInit {
     // //////////////////
           // Widget Login
     // //////////////////
-    widgetModal() {
-        const WidgetDialogConfig = new MatDialogConfig();
-        this.sidebarClose();
+    // widgetModal() {
+    //     const WidgetDialogConfig = new MatDialogConfig();
+    //     this.sidebarClose();
 
     
-        // 表示するdialogの設定
-        WidgetDialogConfig.disableClose = true;
-        WidgetDialogConfig.id = "widget-modal-component";
-        WidgetDialogConfig.height = "600px";
-        WidgetDialogConfig.width = "450px";
+    //     // 表示するdialogの設定
+    //     WidgetDialogConfig.disableClose = true;
+    //     WidgetDialogConfig.id = "widget-modal-component";
+    //     WidgetDialogConfig.height = "600px";
+    //     WidgetDialogConfig.width = "450px";
         
     
-        const modalDialog = this._matdialog.open(WidgetModalComponent, WidgetDialogConfig);
-      }
+    //     const modalDialog = this._matdialog.open(WidgetModalComponent, WidgetDialogConfig);
+    //   }
   
     
  
@@ -127,8 +128,9 @@ export class NavbarComponent implements OnInit {
     }
 
     OktaLogout(){
-        this.OktaAuthClient.OktaSDKAuthClient.signOut();
-        document.getElementById("welcomeText").innerHTML = " "
+        // this.OktaAuthClient.OktaSDKAuthClient.signOut();
+        this.OktaAuth.OktaLogout();
+        // document.getElementById("welcomeText").innerHTML = " "
         }
 }
 
